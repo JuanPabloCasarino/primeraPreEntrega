@@ -23,7 +23,7 @@ router.get('/api/products', async (req, res) => {
   }
 })
 
-router.get('api/products:id', async (req, res) => {
+router.get('api/products/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const product = await productManager.getProductById(id);
@@ -39,7 +39,7 @@ router.get('api/products:id', async (req, res) => {
 });
 
 // Agregar products
-router.post('/', async (req, res) => {
+router.post('/api/products', async (req, res) => {
   // Extraer los datos del cuerpo de la solicitud
   const {
     id,
@@ -80,7 +80,7 @@ router.post('/', async (req, res) => {
 });
 
 // Ruta para actualizar un producto por su id
-router.put(':id', async (req, res) => {
+router.put('/api/products:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const product = await productManager.getProductById(id);
@@ -117,7 +117,7 @@ router.put(':id', async (req, res) => {
 });
 
 // Ruta para eliminar un producto por su id
-router.delete(':id', (req, res) => {
+router.delete('/api/products:id', (req, res) => {
   // Extraer el id del producto de los parámetros de la ruta
   const productId = req.params.id;
 
