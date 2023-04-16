@@ -16,7 +16,7 @@ const cartManager = new CartManager('./cart.json');
 router.post('/api/carts', async (req, res) => {
   // Extraer los datos del cuerpo de la solicitud
   // const products = await req.body.products;
-  const newOrder = []
+  const newCart = []
   // // Verificar que los campos obligatorios estén presentes
   // if (!products) {
   //   return res.status(400).json({
@@ -42,7 +42,7 @@ router.post('/api/carts', async (req, res) => {
   // };
 
   // // Agregar el nuevo producto al objeto JavaScript
-   cartManager.addOrder(newOrder);
+   cartManager.addCart(newCart);
 
   // Responder con el nuevo producto agregado
   res.status(201).json("Carrito creado correctamente" );
@@ -50,7 +50,7 @@ router.post('/api/carts', async (req, res) => {
 
 router.get('/api/carts', async (req, res) => {
   try {
-    const orders = await cartManager.getOrder();
+    const orders = await cartManager.getCart();
     res.json(orders); 
     
   } catch (error) {
@@ -61,7 +61,7 @@ router.get('/api/carts', async (req, res) => {
 router.get('api/carts/:cid', async (req, res) => {
   try {
     const cid = await parseInt(req.params.cid);
-    const order = await cartManager.getOrderById(cid);
+    const order = await cartManager.getCartById(cid);
 
     if (!order) {
       return console.log('Order not found');
@@ -73,6 +73,32 @@ router.get('api/carts/:cid', async (req, res) => {
   }
 });
 
+router.post('/:cid/product/:pid', async (req, res) => {
+  // Extraer los datos del cuerpo de la solicitud
+   const products = await req.body.products;
+   const cid = await parseInt(req.params.cid);
+  // Verificar que los campos obligatorios estén presentes
+   if (!products) {
+     return res.status(400).json({
+       error: 'Falta ingresar los productos'
+     });
+   }
+
+  //  Crear el objeto de la nueva orden
+   const newCart = {
+     products:{
+      id:products.id,
+      title: products.title,
+      price: products.price
+     }
+   };
+
+  // // Agregar el nuevo producto al objeto JavaScript
+   cartManager.addCart(newCart);
+
+  // Responder con el nuevo producto agregado
+  res.status(201).json("Carrito creado correctamente" );
+});
 
 
 export default router;
