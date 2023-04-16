@@ -1,12 +1,17 @@
+import  express  from 'express';
 import {
   Router
 } from 'express';
 
+
 const router = Router();
 const products = [];
 
+router.use(express.json());
+router.use(express.urlencoded({extended:true}))
+
 import ProductManager from "../productManager.js";
-const productManager = new ProductManager('products.json');
+const productManager = new ProductManager('./products.json');
 
 router.get('/api/products', async (req, res) => {
   try {
@@ -23,10 +28,10 @@ router.get('/api/products', async (req, res) => {
   }
 })
 
-router.get('api/products/:id', async (req, res) => {
+router.get('api/products/:pid', async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
-    const product = await productManager.getProductById(id);
+    const pid = await parseInt(req.params.pid);
+    const product = await productManager.getProductById(pid);
 
     if (!product) {
       return console.log('Product not found');
@@ -49,7 +54,7 @@ router.post('/api/products', async (req, res) => {
     price,
     stock,
     category,
-    thumbnails
+    thumbnail
   } = await req.body;
 
   // Verificar que los campos obligatorios estén presentes
@@ -69,21 +74,21 @@ router.post('/api/products', async (req, res) => {
     status: true,
     stock,
     category,
-    thumbnails: thumbnails || []
+    thumbnail: thumbnail || []
   };
 
   // Agregar el nuevo producto al objeto JavaScript
   productManager.addProduct(newProduct);
 
   // Responder con el nuevo producto agregado
-  res.status(201).json("Producto agregado correctamente: " + newProduct);
+  res.status(201).json("Producto agregado correctamente: " + newProduct.title);
 });
 
 // Ruta para actualizar un producto por su id
-router.put('/api/products:id', async (req, res) => {
+router.put('/api/products:pid', async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
-    const product = await productManager.getProductById(id);
+    const pid = parseInt(req.params.pid);
+    const product = await productManager.getProductById(pid);
 
     if (!product) {
       return console.log('Product not found');
@@ -95,7 +100,7 @@ router.put('/api/products:id', async (req, res) => {
         price,
         stock,
         category,
-        thumbnails
+        thumbnail
       } = await req.body;
 
       const updatedFields = {
@@ -105,43 +110,25 @@ router.put('/api/products:id', async (req, res) => {
         price,
         stock,
         category,
-        thumbnails: thumbnails
+        thumbnail: thumbnail
       }
       const updatedProduct = productManager.updateProduct(productId, updatedFields)
+      res.status(201).json("El producto ha sido actualizado: " + updatedProduct);
     }
-    // Responder con el producto actualizado
-    res.json("El producto ha sido actualizado: " + updatedProduct);
+
   } catch (error) {
     console.error(error);
   }
 });
 
 // Ruta para eliminar un producto por su id
-router.delete('/api/products:id', (req, res) => {
-  // Extraer el id del producto de los parámetros de la ruta
-  const productId = req.params.id;
+router.delete('/api/products:id', async (req, res) => {
+  try {
+    const products = await productManager.getProducts();
 
-  // Buscar el producto en la lista de productos
-  const productIndex = products.findIndex(product => product.id === productId);
-
-  // Verificar si el producto existe
-  if (productIndex === -1) {
-    return res.status(404).json({
-      error: 'Producto no encontrado'
-    });
+  } catch (error) {
+    console.error(error);
   }
-
-  // Eliminar el producto de la lista de productos
-  products.splice(productIndex, 1);
-
-  // Escribir los cambios en el archivo products.json
-  const fileContent = JSON.stringify(products, null, 2);
-  fs.writeFileSync('products.json', fileContent);
-
-  // Responder con un mensaje de éxito
-  res.json({
-    message: 'Producto eliminado correctamente'
-  });
 });
 
 
