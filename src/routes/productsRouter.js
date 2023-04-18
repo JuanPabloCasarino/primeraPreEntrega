@@ -28,13 +28,14 @@ router.get('/api/products', async (req, res) => {
   }
 })
 
-router.get('api/products/:pid', async (req, res) => {
+router.get('/api/products/:pid', async (req, res) => {
   try {
     const pid = await parseInt(req.params.pid);
     const product = await productManager.getProductById(pid);
 
     if (!product) {
-      return console.log('Product not found');
+      return console.log('Product not found adwadaw');
+
     } else {
       res.json(product);
     }
@@ -85,7 +86,7 @@ router.post('/api/products', async (req, res) => {
 });
 
 // Ruta para actualizar un producto por su id
-router.put('/api/products:pid', async (req, res) => {
+router.put('/api/products/:pid', async (req, res) => {
   try {
     const pid = parseInt(req.params.pid);
     const product = await productManager.getProductById(pid);
@@ -112,8 +113,8 @@ router.put('/api/products:pid', async (req, res) => {
         category,
         thumbnail: thumbnail
       }
-      const updatedProduct = productManager.updateProduct(productId, updatedFields)
-      res.status(201).json("El producto ha sido actualizado: " + updatedProduct);
+      productManager.updateProduct(pid, updatedFields)
+      res.status(201).json("El producto ha sido actualizado");
     }
 
   } catch (error) {
@@ -124,8 +125,14 @@ router.put('/api/products:pid', async (req, res) => {
 // Ruta para eliminar un producto por su id
 router.delete('/api/products:id', async (req, res) => {
   try {
-    const products = await productManager.getProducts();
+    const pid = parseInt(req.params.pid);
+    const product = await productManager.getProductById(pid);
 
+    if(!product){
+      return console.log('Product not found');
+    } else{
+
+    }
   } catch (error) {
     console.error(error);
   }
