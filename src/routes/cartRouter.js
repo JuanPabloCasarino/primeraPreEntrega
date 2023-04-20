@@ -29,13 +29,13 @@ router.post('/api/carts', async (req, res) => {
 
 router.get('/api/carts/:cid', async (req, res) => {
   try {
-    const cid = await parseInt(req.params.cid);
-    const order = await cartManager.getCartById(cid);
+    const cid = parseInt(req.params.cid);
+    const cart = await cartManager.getCartById(cid);
 
-    if (!order) {
+    if (!cart) {
       return console.log('Carrito no encontrado');
     } else {
-      res.json(order);
+      res.json(cart);
     }
   } catch (error) {
     console.error(error);
