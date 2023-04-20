@@ -1,1 +1,81 @@
-[{"id":1,"title":"Torta de chocolate","description":"Sin azucar","price":19.99,"thumbnail":"path/to/image","code":"ABC123","stock":10},{"id":2,"title":"Torta de zanahoria","description":"Sin gluten","price":23.99,"thumbnail":"path/to/image2","code":"EFG456","stock":13},{"id":3,"title":"Torta de manzana","description":"Sin gluten","price":27.99,"thumbnail":"path/to/image3","code":"ZXC123","stock":13},{"id":4,"title":"Torta de banana","description":"Sin azucar","price":15,"thumbnail":"path/to/image4","code":"VBN567","stock":13},{"id":5,"title":"Torta de manzana","description":"Sin gluten","price":30.99,"thumbnail":"path/to/image5","code":"JKL789","stock":15},{"id":6,"title":"Tarta capresse","description":"Sin gluten","price":10.99,"thumbnail":"path/to/image6","code":"TYU125","stock":10},{"id":7,"title":"Refuerzo de membrilo","description":"Sin azucar","price":30.99,"thumbnail":"path/to/image7","code":"UIO135","stock":15},{"id":8,"title":"Torta de manzana","description":"Vegano","price":19.99,"thumbnail":"path/to/image8","code":"ZXC125","stock":15},{"id":9,"title":"Torta de limon","description":"Vegano","price":23.99,"thumbnail":"path/to/image9","code":"VBN757","stock":15},{"id":10,"title":"Budin de espinaca","description":"Vegano","price":15.99,"thumbnail":"path/to/image10","code":"ÑLK098","stock":15},{"id":11,"title":"Torta de naranja","description":"Sin azucar","price":15.99,"code":"ABC123","thumbnail":"path/to/image11","stock":13},{"id":12,"title":"Torta de limon","description":"Sin azucar","price":20.99,"code":"ABC123","stock":10,"category":"Tortas","thumbnail":"path/to/image12"}]
+[{
+    "id": 1,
+    "title": "Torta de chocolate",
+    "description": "Sin azucar",
+    "price": 19.99,
+    "thumbnail": "path/to/image",
+    "code": "ABC123",
+    "stock": 10
+}, {
+    "id": 2,
+    "title": "Torta de zanahoria",
+    "description": "Sin gluten",
+    "price": 23.99,
+    "thumbnail": "path/to/image2",
+    "code": "EFG456",
+    "stock": 13
+}, {
+    "id": 3,
+    "title": "Torta de manzana",
+    "description": "Sin gluten",
+    "price": 27.99,
+    "thumbnail": "path/to/image3",
+    "code": "ZXC123",
+    "stock": 13
+}, {
+    "id": 4,
+    "title": "Torta de banana",
+    "description": "Sin azucar",
+    "price": 15,
+    "thumbnail": "path/to/image4",
+    "code": "VBN567",
+    "stock": 13
+}, {
+    "id": 5,
+    "title": "Torta de manzana",
+    "description": "Sin gluten",
+    "price": 30.99,
+    "thumbnail": "path/to/image5",
+    "code": "JKL789",
+    "stock": 15
+}, {
+    "id": 6,
+    "title": "Tarta capresse",
+    "description": "Sin gluten",
+    "price": 10.99,
+    "thumbnail": "path/to/image6",
+    "code": "TYU125",
+    "stock": 10
+}, {
+    "id": 7,
+    "title": "Refuerzo de membrilo",
+    "description": "Sin azucar",
+    "price": 30.99,
+    "thumbnail": "path/to/image7",
+    "code": "UIO135",
+    "stock": 15
+}, {
+    "id": 8,
+    "title": "Torta de manzana",
+    "description": "Vegano",
+    "price": 19.99,
+    "thumbnail": "path/to/image8",
+    "code": "ZXC125",
+    "stock": 15
+}, {
+    "id": 9,
+    "title": "Torta de limon",
+    "description": "Vegano",
+    "price": 23.99,
+    "thumbnail": "path/to/image9",
+    "code": "VBN757",
+    "stock": 15
+}, {
+    "id": 10,
+    "title": "Budin de espinaca",
+    "description": "Vegano",
+    "price": 15.99,
+    "thumbnail": "path/to/image10",
+    "code": "ÑLK098",
+    "stock": 15
+}]

@@ -5,23 +5,22 @@ class ProductManager {
     this.path = path;
   }
 
-   addProduct(product) {
-     const products = this.getProductsFromFile();
-     const newProduct = {
-       id: products.length > 0 ? products[products.length - 1].id + 1 : 1,
-       title: product.title,
-       description: product.description,
-       price: product.price,
-       thumbnail: product.thumbnail,
-       code: product.code,
-       stock: product.stock
-     };
-     products.push(newProduct);
-     this.saveProductsToFile(products);
-     return newProduct;
-   }
+  addProduct(product) {
+    const products = this.getProductsFromFile();
+    const newProduct = {
+      id: products.length > 0 ? products[products.length - 1].id + 1 : 1,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      thumbnail: product.thumbnail,
+      code: product.code,
+      stock: product.stock
+    };
+    this.saveProductsToFile(products);
+    return newProduct;
+  }
 
-getProducts() {
+  getProducts() {
     return this.getProductsFromFile();
   }
 
@@ -30,26 +29,33 @@ getProducts() {
     return products.find((product) => product.id === id);
   }
 
-   updateProduct(id, updatedFields) {
-     const products = this.getProductsFromFile();
-     const productIndex = products.findIndex((product) => product.id === id);
-     if (productIndex >= 0) {
-       const updatedProduct = { ...products[productIndex], ...updatedFields };
-       products[productIndex] = updatedProduct;
-       this.saveProductsToFile(products);
-       console.log("Product updated: " + updatedProduct.title);
-       return updatedProduct;
-     }
-     return null;
-   }
+  updateProduct(id, updatedFields) {
+    const products = this.getProductsFromFile();
+    const productIndex = products.findIndex((product) => product.id === id);
+    if (productIndex >= 0) {
+      const updatedProduct = {
+        ...products[productIndex],
+        ...updatedFields
+      };
+      products[productIndex] = updatedProduct;
+      this.saveProductsToFile(products);
+      console.log("Product updated: " + updatedProduct.title);
+      return updatedProduct;
+    }
+    return null;
+  }
 
-   deleteProduct(id) {
-     const products = this.getProductsFromFile();
-    const updatedProducts = products.filter((product) => product.id !== id);
-     this.saveProductsToFile(updatedProducts);
-     console.log("Product with the id "+ id +" deleted correctly");
-     return updatedProducts;
-   }
+  deleteProduct(pid) {
+    const products = this.getProductsFromFile();
+    const productIndex = products.findIndex((p) => p.id === pid);
+    if (productIndex !== -1) {
+      products.splice(productIndex, 1);
+      this.saveProductsToFile(products);
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   getProductsFromFile() {
     if (!fs.existsSync(this.path)) {
@@ -65,4 +71,3 @@ getProducts() {
 }
 
 export default ProductManager;
-

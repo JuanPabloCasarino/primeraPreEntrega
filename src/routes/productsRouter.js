@@ -123,7 +123,7 @@ router.put('/api/products/:pid', async (req, res) => {
 });
 
 // Ruta para eliminar un producto por su id
-router.delete('/api/products:id', async (req, res) => {
+router.delete('/api/products/:pid', async (req, res) => {
   try {
     const pid = parseInt(req.params.pid);
     const product = await productManager.getProductById(pid);
@@ -131,7 +131,8 @@ router.delete('/api/products:id', async (req, res) => {
     if(!product){
       return console.log('Product not found');
     } else{
-
+        productManager.deleteProduct(pid)
+        console.log('Product with Id: ' + pid + ' deleted');
     }
   } catch (error) {
     console.error(error);

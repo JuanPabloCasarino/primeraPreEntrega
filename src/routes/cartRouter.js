@@ -16,20 +16,16 @@ const cartManager = new CartManager('./cart.json');
 
 
 router.post('/api/carts', async (req, res) => {
-  const newCart = []
-  cartManager.addCart(newCart);
-  res.status(201).json("Carrito creado correctamente");
+   const carts = cartManager.getCart();
+   const newCartId = carts.length > 0 ? carts[carts.length - 1].id + 1 : 1;
+   const newCart = {
+     id: newCartId,
+     products: []
+   };
+   
+   cartManager.addCart(newCart);
+   res.status(201).json(newCart);
 });
-
-router.get('/api/carts', async (req, res) => {
-  try {
-    const orders = await cartManager.getCart();
-    res.json(orders);
-
-  } catch (error) {
-    console.error(error);
-  }
-})
 
 router.get('/api/carts/:cid', async (req, res) => {
   try {
@@ -56,11 +52,10 @@ router.get('/api/carts/:cid', async (req, res) => {
 // });
 
 router.post('/api/carts/:cid/product/:pid', async (req, res) => {
-  const cid = req.params.cid;
-  const pid = req.params.pid;
-
+  const cid = parseInt(req.params.cid);
+  const pid = parseInt(req.params.pid);
   
-  await cartManager.updateCart(cid, pid);
+  cartManager.addProductToCart(cid, pid);
   
   // Responder con el carrito actualizado
   res.json(cart);
