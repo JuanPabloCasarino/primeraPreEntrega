@@ -16,6 +16,7 @@ class ProductManager {
       code: product.code,
       stock: product.stock
     };
+    products.push(newProduct);
     this.saveProductsToFile(products);
     return newProduct;
   }
