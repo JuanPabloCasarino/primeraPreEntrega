@@ -42,15 +42,6 @@ router.get('/api/carts/:cid', async (req, res) => {
   }
 });
 
-// router.post('/:cid/product/:pid', async (req, res) => {
-//   const cid = await parseInt(req.params.cid);
-//   const pid = await parseInt(req.params.pid);
-
-//     cartManager.updateCart(cid, pid);
-//     res.status(201).json("Carrito creado correctamente");
-  
-// });
-
 router.post('/api/carts/:cid/product/:pid', async (req, res) => {
   const cid = parseInt(req.params.cid);
   const pid = parseInt(req.params.pid);

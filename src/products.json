@@ -70,13 +70,4 @@
     "thumbnail": "path/to/image9",
     "code": "VBN757",
     "stock": 15
-}, {
-    "id": 10,
-    "title": "Budin de banana",
-    "description": "Sin gluten",
-    "price": 20.99,
-    "thumbnail": "path/to/image10",
-    "code": "ÑLK098",
-    "stock": 12,
-    "category": "dulce"
 }]

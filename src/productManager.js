@@ -48,11 +48,11 @@ class ProductManager {
 
   deleteProduct(pid) {
     const products = this.getProductsFromFile();
-    const productIndex = products.findIndex((p) => p.id === pid);
-    if (productIndex !== -1) {
-      products.splice(productIndex, 1);
+    const product = products.findIndex((p) => p.id === pid);
+    if (product !== -1) {
+      products.splice(product, 1);
       this.saveProductsToFile(products);
-      return true;
+      return products[pid];
     } else {
       return false;
     }

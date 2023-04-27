@@ -132,7 +132,7 @@ router.delete('/api/products/:pid', async (req, res) => {
       return console.log('Product not found');
     } else{
         productManager.deleteProduct(pid)
-        console.log('Product with Id: ' + pid + ' deleted');
+        res.status(200).json('Product with Id: ' + pid + ' deleted')
     }
   } catch (error) {
     console.error(error);
