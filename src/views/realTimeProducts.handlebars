@@ -54,20 +54,13 @@
             // actualizar la lista de productos en la vista
         });
 
-        // manejar evento de creación de un nuevo producto
-        // enviar un objeto con la propiedad "product" que contenga el id del producto creado
         socket.on('newProduct', (product) => {
             console.log('new product created:', product);
         });
-
-        // manejar evento de eliminación de un producto
-        // enviar el id del producto eliminado
         socket.on('deleteProduct', (productId) => {
             console.log('product deleted:', productId);
         });
         socket.on("updateProducts", products => {
-            const html = products.map(product => `<li>${product.title} - ${product.price} USD</li>`).join("");
-            document.getElementById("product-list").innerHTML = html;
         });
     </script>
 
