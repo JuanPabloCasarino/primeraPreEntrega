@@ -2,7 +2,14 @@
     <h1>Lista de productos</h1>
     <ul id="product-list">
         {{#each products}}
-        <li>{{this.title}}. Price: {{this.price}}</li>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body p-3 ">
+                <h5 class="card-title">{{this.title}}</h5>
+                <h6 class="card-subtitle mb-2 ">{{this.price}}</h6>
+                <p class="card-text">{{this.description}}</p>
+                <button type="button" class="btn btn-primary">Eliminar producto</button>
+            </div>
+        </div>
         {{/each}}
     </ul>
 

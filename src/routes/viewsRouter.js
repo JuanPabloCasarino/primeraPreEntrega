@@ -9,6 +9,11 @@ const router = Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}))
 
+
+router.get('/', (req, res)=>{
+    res.render('index',{});
+  })
+
 router.get('/home', (req, res)=>{
     const products = productManager.getProducts();
     res.render('home',{products});
