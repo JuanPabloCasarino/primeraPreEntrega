@@ -10,7 +10,7 @@ router.use(express.json());
 router.use(express.urlencoded({extended:true}))
 
 
-router.get('/', (req, res)=>{
+router.get('/', (req, res)=>{ 
     res.render('index',{});
   })
 
@@ -19,10 +19,10 @@ router.get('/home', (req, res)=>{
     res.render('home',{products});
   })
 
-  router.get('/realtimeproducts', (req, res) => {
+ router.get('/realtimeproducts', (req, res) => {
     const products = productManager.getProducts();
     res.render('realTimeProducts', { products });
-  });
+});
   
   
 
